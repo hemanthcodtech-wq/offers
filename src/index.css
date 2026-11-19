@@ -312,7 +312,116 @@ html, body {
     margin: 0 !important;
     height: auto !important;
     box-shadow: none !important;
+    overflow-x: hidden !important;
   }
+
+  /* Universal Mobile Responsive Typography & Form Controls */
+  h1 { font-size: clamp(20px, 5.5vw, 26px) !important; }
+  h2 { font-size: clamp(17px, 4.5vw, 22px) !important; }
+  h3 { font-size: clamp(15px, 4vw, 18px) !important; }
+
+  /* Mobile Full Height Map Viewport */
+  .mobile-map-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .mobile-map-canvas-container {
+    height: calc(100vh - 280px) !important;
+    min-height: 320px !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 2px solid #ffd700 !important;
+  }
+
+  .mobile-radar-drawer {
+    background: #0d0d10 !important;
+    padding: 14px 16px 20px !important;
+    border-top: 1.5px solid rgba(255, 215, 0, 0.3) !important;
+  }
+
+  /* Single Column on Phones for all Multi-column grids */
+  .desktop-feed-grid,
+  .desktop-split-container,
+  .desktop-details-layout,
+  .desktop-profile-layout,
+  .desktop-page-container {
+    display: block !important;
+    padding: 10px 14px !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .desktop-sticky-left {
+    position: static !important;
+    width: 100% !important;
+    margin-bottom: 18px !important;
+  }
+
+  /* Universal Mobile Modal Sheet Responsive Centering & Padding */
+  .spring-card[style*="max-width: 500px"],
+  .spring-card[style*="max-width: 540px"],
+  .spring-card[style*="max-width: 520px"],
+  .spring-card[style*="max-width: 340px"] {
+    width: 94% !important;
+    max-width: 94% !important;
+    margin: 10px auto !important;
+    padding: 20px 16px !important;
+    border-radius: 22px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+
+  /* Auth / Signup / Login Card Responsive Stacking */
+  .login-card-container,
+  .signup-card-container {
+    padding: 16px 14px !important;
+    width: 100% !important;
+  }
+
+  /* Form Fields on Mobile - Zero Horizontal Overflow */
+  .form-input, input, select, textarea {
+    font-size: 14px !important; /* Prevents auto-zoom on iOS Safari */
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2-column Form Grids collapse cleanly on narrow phones */
+  div[style*="gridTemplateColumns: 1fr 1fr"],
+  div[style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+}
+
+/* Specific Small Phone Screen Optimizations (iPhone SE, Galaxy S compact <= 380px) */
+@media (max-width: 380px) {
+  body {
+    font-size: 13px !important;
+  }
+  .app-header {
+    padding: 6px 10px !important;
+  }
+  .app-header h1 {
+    font-size: 15px !important;
+  }
+  .bottom-nav-bar {
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .bottom-nav-bar button {
+    font-size: 10px !important;
+  }
+  .form-input {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+}
+
+/* Touch Safe Padding for Mobile Bottom Bar */
+.bottom-nav-bar {
+  padding-bottom: calc(8px + env(safe-area-inset-bottom, 12px)) !important;
 }
 
 /* Desktop Experience (>= 1024px Laptops & Monitors) */
@@ -366,11 +475,19 @@ html, body {
     gap: 18px !important;
   }
 
-  /* Full Width Map canvas on desktop */
-  .desktop-map-container {
-    height: 520px !important;
-    border-radius: 20px !important;
-    border: 1.5px solid rgba(255, 215, 0, 0.3) !important;
+  /* Desktop Map Layout Grid */
+  .desktop-map-grid {
+    display: grid !important;
+    grid-template-columns: minmax(320px, 1.8fr) minmax(320px, 1.2fr) !important;
+    gap: 24px !important;
+    align-items: start !important;
+    padding: 16px 20px !important;
+  }
+
+  .desktop-map-canvas-container {
+    height: 540px !important;
+    border-radius: 24px !important;
+    border: 2px solid rgba(255, 215, 0, 0.35) !important;
   }
 
   /* Desktop Offer Details Split Screen */

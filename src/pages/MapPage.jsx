@@ -233,24 +233,19 @@ export default function MapPage() {
         </div>
       </div>
 
-      {/* Main Dual-View Radar Showcase (Split on Desktop, Stacked on Mobile) */}
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '16px 20px' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 1.8fr) minmax(320px, 1.2fr)',
-          gap: '24px',
-          alignItems: 'start'
-        }}>
-          {/* ================= LEFT: LEAFLET MAP RADAR CANVAS ================= */}
-          <div style={{
-            position: 'relative',
-            width: '100%',
-            height: '520px',
-            borderRadius: '24px',
-            overflow: 'hidden',
-            border: '2px solid rgba(255, 215, 0, 0.35)',
-            boxShadow: '0 12px 35px rgba(0,0,0,0.85)'
-          }}>
+      {/* Main Dual-View Radar Showcase (Split on Desktop, Seamless View on Mobile) */}
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+        <div className="mobile-map-layout desktop-map-grid">
+          {/* ================= MAP RADAR CANVAS ================= */}
+          <div
+            className="mobile-map-canvas-container desktop-map-canvas-container"
+            style={{
+              position: 'relative',
+              width: '100%',
+              overflow: 'hidden',
+              boxShadow: '0 12px 35px rgba(0,0,0,0.85)'
+            }}
+          >
             <MapContainer
               center={userCoords}
               zoom={14}
@@ -343,8 +338,8 @@ export default function MapPage() {
             </button>
           </div>
 
-          {/* ================= RIGHT: STORE SELECTION & RADAR LISTING ================= */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {/* ================= STORE SELECTION & RADAR LISTING ================= */}
+          <div className="mobile-radar-drawer" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* Selected Store Target Showcase */}
             {selectedOffer && (
               <div
