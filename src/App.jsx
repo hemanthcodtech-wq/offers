@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AppProvider, useApp } from './context/AppContext';
 import MobileStatusBar from './components/MobileStatusBar';
+import DesktopNavbar from './components/DesktopNavbar';
+import DesktopFooter from './components/DesktopFooter';
 import BottomNav from './components/BottomNav';
 import FranchiseBottomNav from './components/FranchiseBottomNav';
 import BusinessBottomNav from './components/BusinessBottomNav';
 import AdminBottomNav from './components/AdminBottomNav';
 import SplashScreenOverlay from './components/SplashScreenOverlay';
+import ToastContainer from './components/ToastContainer';
+import DownloadAppModal from './components/DownloadAppModal';
 
 // Core Pages
 import SplashScreen from './pages/SplashScreen';
@@ -25,6 +29,9 @@ import AdminCustomersPage from './pages/AdminCustomersPage';
 import AdminMerchantsPage from './pages/AdminMerchantsPage';
 import AdminFranchisesPage from './pages/AdminFranchisesPage';
 import AdminFinancePage from './pages/AdminFinancePage';
+import AdminShopRequestsPage from './pages/AdminShopRequestsPage';
+import AdminFranchiseRequestsPage from './pages/AdminFranchiseRequestsPage';
+import AdminOfferRequestsPage from './pages/AdminOfferRequestsPage';
 
 // Business Merchant Portal & Sub-Pages
 import BusinessPanelPage from './pages/BusinessPanelPage';
@@ -67,12 +74,21 @@ function AppLayout() {
   const isAdminSection = location.pathname.startsWith('/admin');
   const isFranchiseSection = location.pathname.startsWith('/franchise');
   const isBusinessSection = location.pathname.startsWith('/business');
-  const isConsumerSection = ['/home', '/offers', '/map', '/profile'].includes(location.pathname);
+  const isConsumerSection = ['/home', '/offers', '/map', '/profile'].includes(location.pathname) || location.pathname.startsWith('/offers/');
   
   const isSplashRoute = location.pathname === '/';
 
   return (
     <div className="app-wrapper">
+      {/* Luxury Golden Toast Notification Container */}
+      <ToastContainer />
+
+      {/* Website "Download Our App" Modal Popup */}
+      <DownloadAppModal />
+
+      {/* Desktop Wide Navigation Bar (Shown only on >= 1024px screens) */}
+      {!isSplashRoute && <DesktopNavbar />}
+
       {/* Dynamic Splash Screen on Website Entry */}
       {showEntrySplash && (
         <SplashScreenOverlay onFinished={handleSplashFinish} duration={2600} />
@@ -98,6 +114,9 @@ function AppLayout() {
             <Route path="/admin/merchants" element={<AdminMerchantsPage />} />
             <Route path="/admin/franchises" element={<AdminFranchisesPage />} />
             <Route path="/admin/finance" element={<AdminFinancePage />} />
+            <Route path="/admin/shop-requests" element={<AdminShopRequestsPage />} />
+            <Route path="/admin/franchise-requests" element={<AdminFranchiseRequestsPage />} />
+            <Route path="/admin/offer-requests" element={<AdminOfferRequestsPage />} />
 
             {/* Business Merchant Portal & Sub-Pages */}
             <Route path="/business" element={<BusinessPanelPage />} />
@@ -133,6 +152,9 @@ function AppLayout() {
         {isBusinessSection && <BusinessBottomNav />}
         {isConsumerSection && <BottomNav />}
       </div>
+
+      {/* Desktop Luxury Footer (Shown only on >= 1024px screens) */}
+      {!isSplashRoute && <DesktopFooter />}
     </div>
   );
 }

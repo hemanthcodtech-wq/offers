@@ -16,7 +16,7 @@ import {
 
 export default function BusinessPostOfferPage() {
   const navigate = useNavigate();
-  const { addBusinessOffer, selectedCity } = useApp();
+  const { addBusinessOffer, selectedCity, showToast } = useApp();
 
   const [title, setTitle] = useState('');
   const [discount, setDiscount] = useState('50%');
@@ -32,7 +32,7 @@ export default function BusinessPostOfferPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !headline.trim()) {
-      alert('Please fill in required fields');
+      showToast('Please fill in required fields', 'error');
       return;
     }
 

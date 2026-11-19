@@ -17,7 +17,7 @@ import {
 
 export default function FranchiseRegisterBusinessPage() {
   const navigate = useNavigate();
-  const { addBusinessOffer, selectedCity } = useApp();
+  const { addBusinessOffer, selectedCity, showToast } = useApp();
 
   const [shopName, setShopName] = useState('');
   const [ownerName, setOwnerName] = useState('');
@@ -32,7 +32,7 @@ export default function FranchiseRegisterBusinessPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!shopName.trim() || !ownerName.trim() || !phone.trim()) {
-      alert('Please fill all mandatory fields');
+      showToast('Please fill all mandatory fields', 'error');
       return;
     }
 

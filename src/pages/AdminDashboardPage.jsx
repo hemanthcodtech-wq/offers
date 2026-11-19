@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import AnimatedCounter from '../components/AnimatedCounter';
 import { useApp } from '../context/AppContext';
 import {
   ShieldAlert,
@@ -19,7 +20,16 @@ import {
 
 export default function AdminDashboardPage() {
   const navigate = useNavigate();
-  const { customers, merchants, franchises, adminMetrics, offers } = useApp();
+  const {
+    customers,
+    merchants,
+    franchises,
+    adminMetrics,
+    offers,
+    shopRequests,
+    franchiseRequests,
+    offerRequests
+  } = useApp();
 
   return (
     <div style={{ paddingBottom: '90px' }}>
@@ -97,7 +107,7 @@ export default function AdminDashboardPage() {
               GROSS PLATFORM VOLUME (MONTHLY)
             </div>
             <div style={{ fontSize: '24px', fontWeight: '950', color: '#ffd700', marginTop: '2px' }}>
-              {adminMetrics.totalRevenue}
+              <AnimatedCounter value={1230400} prefix="₹" duration={1400} />
             </div>
           </div>
           <span style={{ fontSize: '11px', color: '#22c55e', fontWeight: '800', backgroundColor: 'rgba(34, 197, 94, 0.15)', padding: '4px 10px', borderRadius: '12px' }}>
@@ -107,6 +117,79 @@ export default function AdminDashboardPage() {
       </div>
 
       <div style={{ padding: '16px 18px' }}>
+        {/* Pending Approvals Action Queue */}
+        <div style={{
+          background: 'linear-gradient(135deg, #241c08 0%, #17151a 100%)',
+          borderRadius: '20px',
+          border: '1.5px solid #ffd700',
+          padding: '16px',
+          marginBottom: '20px',
+          boxShadow: '0 8px 24px rgba(255, 215, 0, 0.25)'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span className="live-beacon" />
+              <h3 style={{ fontSize: '15px', fontWeight: '950', color: '#fff' }}>Pending Verification Queues</h3>
+            </div>
+            <span style={{ fontSize: '11px', color: '#ffd700', fontWeight: '800' }}>
+              {shopRequests.length + franchiseRequests.length + offerRequests.length} ACTION ITEMS
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px' }}>
+            <div
+              onClick={() => navigate('/admin/shop-requests')}
+              className="spring-card"
+              style={{
+                background: '#0d0d10',
+                border: '1px solid rgba(255, 215, 0, 0.25)',
+                borderRadius: '14px',
+                padding: '12px 10px',
+                textAlign: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <div style={{ fontSize: '18px', fontWeight: '950', color: '#ffd700' }}>{shopRequests.length}</div>
+              <div style={{ fontSize: '11px', fontWeight: '700', color: '#fff', marginTop: '2px' }}>Shops</div>
+              <div style={{ fontSize: '9px', color: '#22c55e', marginTop: '2px' }}>Review &gt;</div>
+            </div>
+
+            <div
+              onClick={() => navigate('/admin/franchise-requests')}
+              className="spring-card"
+              style={{
+                background: '#0d0d10',
+                border: '1px solid rgba(255, 215, 0, 0.25)',
+                borderRadius: '14px',
+                padding: '12px 10px',
+                textAlign: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <div style={{ fontSize: '18px', fontWeight: '950', color: '#ffd700' }}>{franchiseRequests.length}</div>
+              <div style={{ fontSize: '11px', fontWeight: '700', color: '#fff', marginTop: '2px' }}>Franchises</div>
+              <div style={{ fontSize: '9px', color: '#22c55e', marginTop: '2px' }}>KYC &gt;</div>
+            </div>
+
+            <div
+              onClick={() => navigate('/admin/offer-requests')}
+              className="spring-card"
+              style={{
+                background: '#0d0d10',
+                border: '1px solid rgba(255, 215, 0, 0.25)',
+                borderRadius: '14px',
+                padding: '12px 10px',
+                textAlign: 'center',
+                cursor: 'pointer'
+              }}
+            >
+              <div style={{ fontSize: '18px', fontWeight: '950', color: '#ffd700' }}>{offerRequests.length}</div>
+              <div style={{ fontSize: '11px', fontWeight: '700', color: '#fff', marginTop: '2px' }}>Deals</div>
+              <div style={{ fontSize: '9px', color: '#22c55e', marginTop: '2px' }}>Publish &gt;</div>
+            </div>
+          </div>
+        </div>
+
         {/* Core Administrative Entities Control Cards */}
         <h3 style={{ fontSize: '15px', fontWeight: '900', color: '#ffd700', marginBottom: '12px' }}>
           Entity Controls & Moderation

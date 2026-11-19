@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import { useApp } from '../context/AppContext';
 import { FRANCHISE_DATA } from '../data/mockData';
 import { TrendingUp, FileText, ChevronDown, Download, Share2, Layers, DollarSign } from 'lucide-react';
 
 export default function EarningsPage() {
+  const { showToast } = useApp();
   const [selectedMonth, setSelectedMonth] = useState('This Month');
 
   return (
@@ -237,7 +239,7 @@ export default function EarningsPage() {
 
         {/* View Reports CTA Button from Screenshot 9 */}
         <button
-          onClick={() => alert('Payout Statement & GST Invoice downloaded to device.')}
+          onClick={() => showToast('Payout Statement & GST Invoice downloaded to device.')}
           style={{
             marginTop: '8px',
             width: '100%',

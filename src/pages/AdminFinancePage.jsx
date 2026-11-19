@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export default function AdminFinancePage() {
-  const { adminMetrics, franchises, merchants } = useApp();
+  const { adminMetrics, franchises, merchants, showToast } = useApp();
 
   return (
     <div style={{ paddingBottom: '90px' }}>
@@ -98,7 +98,7 @@ export default function AdminFinancePage() {
           </p>
 
           <button
-            onClick={() => alert('Batch direct deposits dispatched to all 12 verified franchise bank accounts!')}
+            onClick={() => showToast('Batch direct deposits dispatched to all 12 verified franchise bank accounts!')}
             style={{
               width: '100%',
               marginTop: '14px',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import AnimatedCounter from '../components/AnimatedCounter';
 import { FRANCHISE_DATA } from '../data/mockData';
 import {
   Crown,
@@ -196,7 +197,7 @@ export default function FranchisePanelPage() {
           }}>
             <div style={{ fontSize: '10px', color: '#888', fontWeight: '600' }}>ACTIVE SHOPS</div>
             <div style={{ fontSize: '16px', fontWeight: '950', color: '#ffffff', marginTop: '2px' }}>
-              {FRANCHISE_DATA.metrics.registeredBusinesses}
+              <AnimatedCounter value={FRANCHISE_DATA.metrics.registeredBusinesses} duration={1200} />
             </div>
             <div style={{ fontSize: '9px', color: '#22c55e', marginTop: '2px' }}>+8 this week</div>
           </div>

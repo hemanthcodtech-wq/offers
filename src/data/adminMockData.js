@@ -134,3 +134,103 @@ export const ADMIN_METRICS = {
   pendingDealApprovals: 4,
   systemUptime: '99.98%'
 };
+
+// Initial Approval Requests Queues (Populated from Signups)
+export const INITIAL_SHOP_REQUESTS = [
+  {
+    id: 'req-shop-1',
+    businessName: 'Vibe Footwear & Sneakers',
+    owner: 'Arjun Mehta',
+    phone: '+91 98190 44556',
+    email: 'arjun@vibefootwear.in',
+    city: 'Hyderabad',
+    category: 'Fashion',
+    address: 'Shop #14, Road #36, Jubilee Hills',
+    plan: '₹499/mo Merchant Pass',
+    discount: '35% OFF',
+    requestedAt: '10 Mins ago',
+    status: 'Pending',
+    notes: 'Inauguration discount for sneakers & running shoes.'
+  },
+  {
+    id: 'req-shop-2',
+    businessName: 'Cafe Aromas & Bakery',
+    owner: 'Fatima Zaid',
+    phone: '+91 98450 77889',
+    email: 'contact@cafearomas.in',
+    city: 'Hyderabad',
+    category: 'Dining',
+    address: 'Near Cyber Towers, Hitec City',
+    plan: '₹499/mo Merchant Pass',
+    discount: '25% OFF',
+    requestedAt: '1 Hour ago',
+    status: 'Pending',
+    notes: 'Weekend brunch and coffee combo offer.'
+  }
+];
+
+export const INITIAL_FRANCHISE_REQUESTS = [
+  {
+    id: 'req-frc-1',
+    applicantName: 'Vikram Choudhury',
+    zone: 'Zone #08: Gachibowli & Financial District',
+    city: 'Hyderabad',
+    phone: '+91 98860 12345',
+    email: 'vikram.c@franchisepartner.in',
+    aadharNumber: '8765 4321 0987',
+    panNumber: 'ABCDE9876K',
+    bankAccount: '50100456789123',
+    ifscCode: 'HDFC0001890',
+    bankName: 'HDFC Bank Ltd.',
+    experience: '5 Years retail FMCG distribution',
+    requestedAt: '25 Mins ago',
+    status: 'Pending'
+  },
+  {
+    id: 'req-frc-2',
+    applicantName: 'Suresh B. Nair',
+    zone: 'Zone #03: Whitefield & Marathahalli Hub',
+    city: 'Bengaluru',
+    phone: '+91 99001 88776',
+    email: 'suresh.nair@blrhub.in',
+    aadharNumber: '9123 4567 8901',
+    panNumber: 'BNMPL5432Q',
+    bankAccount: '00290156789012',
+    ifscCode: 'ICIC0000029',
+    bankName: 'ICICI Bank',
+    experience: '8 Years franchise logistics operator',
+    requestedAt: '3 Hours ago',
+    status: 'Pending'
+  }
+];
+
+export const INITIAL_OFFER_REQUESTS = [
+  {
+    id: 'req-ofr-1',
+    shopName: 'Sri Sai Mobiles',
+    title: 'Festival Mega Sale: 50% Off on All 5G Smartphones',
+    category: 'Mobiles',
+    discount: '50%',
+    city: 'Hyderabad',
+    submittedBy: 'Suresh Verma',
+    submittedAt: '30 Mins ago',
+    description: 'Flat 50% off on premium smartphone accessories & ₹3,000 instant cashback on 5G devices.',
+    validTill: '31 Dec 2026',
+    status: 'Pending',
+    bannerImage: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'req-ofr-2',
+    shopName: 'Trends Fashion & Boutique',
+    title: 'Winter Clearance: Buy 1 Get 1 Free on Designer Kurtas',
+    category: 'Fashion',
+    discount: 'BOGO',
+    city: 'Hyderabad',
+    submittedBy: 'Meena Kapoor',
+    submittedAt: '2 Hours ago',
+    description: 'Buy 1 Get 1 Free on all designer ethnic wear and handloom sarees. Valid till stock lasts.',
+    validTill: '25 Dec 2026',
+    status: 'Pending',
+    bannerImage: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80'
+  }
+];

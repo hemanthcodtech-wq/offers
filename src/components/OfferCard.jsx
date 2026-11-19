@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Phone, Navigation, Heart, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
-export default function OfferCard({ offer, isCompact = false }) {
+export default function OfferCard({ offer, isCompact = false, index = 0 }) {
   const navigate = useNavigate();
   const { savedOfferIds, toggleSaveOffer } = useApp();
   const isSaved = savedOfferIds.includes(offer.id);
 
   return (
     <div
+      className="spring-card cascade-item metallic-card"
       style={{
         background: '#16161a',
         borderRadius: '18px',
@@ -17,8 +18,8 @@ export default function OfferCard({ offer, isCompact = false }) {
         overflow: 'hidden',
         boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6)',
         marginBottom: '16px',
-        transition: 'transform 0.2s, border-color 0.2s',
-        position: 'relative'
+        position: 'relative',
+        animationDelay: `${Math.min(index * 60, 360)}ms`
       }}
     >
       {/* Top Banner with Badges */}
@@ -149,6 +150,7 @@ export default function OfferCard({ offer, isCompact = false }) {
 
           <div style={{ display: 'flex', gap: '8px' }}>
             <button
+              className="spring-btn"
               onClick={() => {
                 window.location.href = `tel:${offer.phone}`;
               }}
@@ -172,6 +174,7 @@ export default function OfferCard({ offer, isCompact = false }) {
             </button>
 
             <button
+              className="spring-btn"
               onClick={() => navigate(`/offers/${offer.id}`)}
               style={{
                 background: 'rgba(255, 215, 0, 0.12)',

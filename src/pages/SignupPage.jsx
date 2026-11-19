@@ -18,7 +18,7 @@ import {
 
 export default function SignupPage() {
   const navigate = useNavigate();
-  const { signupUser } = useApp();
+  const { signupUser, submitShopRequest, submitFranchiseRequest, showToast } = useApp();
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -53,20 +53,46 @@ export default function SignupPage() {
     setIsLoading(true);
 
     setTimeout(() => {
-      signupUser({
-        name: role === 'Business' && businessName ? `${fullName} (${businessName})` : fullName,
-        email,
-        phone,
-        role,
-        city
-      });
-      setIsLoading(false);
-
       if (role === 'Business') {
-        navigate('/business');
+        submitShopRequest({
+          businessName: businessName || `${fullName}'s Store`,
+          owner: fullName,
+          email,
+          phone,
+          city,
+          category: 'Retail & Mobiles',
+          plan: '₹499/mo Merchant Pass',
+          notes: 'Registered via signup portal. Awaiting Admin verification.'
+        });
+        setIsLoading(false);
+        showToast('Shop registration request submitted! Admin will verify and activate your store within 2 hours.', 'info', 5000);
+        navigate('/login');
       } else if (role === 'Area Franchise') {
-        navigate('/franchise');
+        submitFranchiseRequest({
+          applicantName: fullName,
+          zone: franchiseZone || `${city} Central & West Hub`,
+          city,
+          phone,
+          email,
+          aadharNumber: 'XXXX-XXXX-Pending',
+          panNumber: 'Pending Verification',
+          bankAccount: 'To be collected upon approval',
+          ifscCode: 'Pending',
+          bankName: 'Pending'
+        });
+        setIsLoading(false);
+        showToast('Franchise partner application received! Admin team is reviewing your zone allocation.', 'info', 5000);
+        navigate('/login');
       } else {
+        signupUser({
+          name: fullName,
+          email,
+          phone,
+          role: 'User',
+          city
+        });
+        setIsLoading(false);
+        showToast(`Welcome to Offers NOW, ${fullName}!`);
         navigate('/home');
       }
     }, 700);

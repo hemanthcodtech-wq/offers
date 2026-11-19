@@ -226,7 +226,8 @@ export default function BusinessPanelPage() {
             </div>
             <p style={{ fontSize: '12px', color: '#a0a0a0', marginTop: '2px' }}>{myLiveOffer.description}</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#22c55e', marginTop: '6px', fontWeight: '700' }}>
-              <span>● Status: LIVE</span>
+              <span className="live-beacon" />
+              <span>Status: LIVE</span>
               <span>•</span>
               <span style={{ color: '#ffd700' }}>12,410 Views</span>
             </div>

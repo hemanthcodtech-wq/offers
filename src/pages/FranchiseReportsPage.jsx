@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import { useApp } from '../context/AppContext';
 import { FRANCHISE_DATA } from '../data/mockData';
 import {
   FileText,
@@ -13,6 +14,7 @@ import {
 } from 'lucide-react';
 
 export default function FranchiseReportsPage() {
+  const { showToast } = useApp();
   const reportsList = [
     {
       id: 'REP-NOV-2026',
@@ -44,7 +46,7 @@ export default function FranchiseReportsPage() {
   ];
 
   const handleDownload = (rep) => {
-    alert(`Downloading ${rep.title} PDF statement with official Offers NOW GST tax invoice...`);
+    showToast(`Downloading ${rep.title} PDF statement with official Offers NOW GST tax invoice...`, 'info');
   };
 
   return (

@@ -20,7 +20,7 @@ import {
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { loginWithCredentials, loginAsRole } = useApp();
+  const { loginWithCredentials, loginAsRole, showToast } = useApp();
 
   const [activeTab, setActiveTab] = useState('roles'); // 'roles' | 'credentials'
   const [email, setEmail] = useState('admin@offersnow.in');
@@ -488,7 +488,7 @@ export default function LoginPage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                 <label style={{ fontSize: '12px', color: '#b0b0b8' }}>Password</label>
                 <span
-                  onClick={() => alert('Password reset link sent to registered email!')}
+                  onClick={() => showToast('Password reset link sent to registered email!', 'info')}
                   style={{ fontSize: '11px', color: '#ffd700', cursor: 'pointer', fontWeight: '700' }}
                 >
                   Forgot Password?

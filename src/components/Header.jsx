@@ -14,7 +14,7 @@ export default function Header({
   rightAction = null
 }) {
   const navigate = useNavigate();
-  const { selectedCity, setSelectedCity } = useApp();
+  const { selectedCity, setSelectedCity, showToast } = useApp();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -22,18 +22,15 @@ export default function Header({
       {/* Interactive Sliding Side Menu Drawer */}
       <SideDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
 
-      <header style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '8px 16px 10px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 90,
-        background: 'rgba(12, 12, 14, 0.96)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255, 215, 0, 0.18)'
-      }}>
+      <header
+        className="app-header"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '8px 16px 10px'
+        }}
+      >
         {/* Left Action: Back button OR Hamburger Menu Trigger */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {showBack ? (
@@ -85,7 +82,7 @@ export default function Header({
                     color: '#ffffff',
                     lineHeight: '1.1'
                   }}>
-                    Offers <span style={{ color: '#ffd700' }}>NOW</span>
+                    Offers <span className="shimmer-gold" style={{ display: 'inline-block' }}>NOW</span>
                   </div>
                   <div
                     style={{ display: 'flex', alignItems: 'center', gap: '3px', marginTop: '2px', cursor: 'pointer' }}
@@ -126,7 +123,8 @@ export default function Header({
                 if (navigator.share) {
                   navigator.share({ title: 'Offers NOW', text: 'Check out this deal!', url: window.location.href });
                 } else {
-                  alert('Deal link copied to clipboard!');
+                  navigator.clipboard?.writeText(window.location.href);
+                  showToast('Deal link copied to clipboard!');
                 }
               }}
               style={{
@@ -149,6 +147,7 @@ export default function Header({
           {showNotifications && (
             <div style={{ position: 'relative' }}>
               <button
+                className="spring-btn"
                 onClick={() => navigate('/profile/notifications')}
                 style={{
                   background: 'rgba(255, 255, 255, 0.08)',
@@ -163,17 +162,19 @@ export default function Header({
                   cursor: 'pointer'
                 }}
               >
-                <Bell size={17} color="#ffd700" />
+                <span className="bell-sway" style={{ display: 'inline-flex' }}>
+                  <Bell size={17} color="#ffd700" />
+                </span>
               </button>
-              <span style={{
+              <span className="pulse-badge" style={{
                 position: 'absolute',
                 top: '2px',
                 right: '2px',
-                width: '7px',
-                height: '7px',
+                width: '8px',
+                height: '8px',
                 backgroundColor: '#ff3b30',
                 borderRadius: '50%',
-                boxShadow: '0 0 6px #ff3b30'
+                pointerEvents: 'none'
               }} />
             </div>
           )}

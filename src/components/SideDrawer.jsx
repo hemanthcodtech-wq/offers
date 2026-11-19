@@ -54,6 +54,9 @@ export default function SideDrawer({ isOpen, onClose }) {
 
   const adminLinks = [
     { label: 'Admin Command Hub', path: '/admin', icon: ShieldAlert },
+    { label: 'Shop Requests', path: '/admin/shop-requests', icon: Store, badge: 'Approval' },
+    { label: 'Franchise Requests', path: '/admin/franchise-requests', icon: Briefcase, badge: 'KYC' },
+    { label: 'Offer Requests', path: '/admin/offer-requests', icon: Gift, badge: 'Deals' },
     { label: 'Manage Customers', path: '/admin/users', icon: Users, badge: 'Users' },
     { label: 'Manage Shopkeepers', path: '/admin/merchants', icon: Store, badge: 'Shops' },
     { label: 'Manage Franchises', path: '/admin/franchises', icon: Briefcase, badge: 'Zones' },

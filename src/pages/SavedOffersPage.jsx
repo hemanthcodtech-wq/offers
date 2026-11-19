@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import OfferCard from '../components/OfferCard';
 import { useApp } from '../context/AppContext';
-import { Heart, ArrowRight } from 'lucide-react';
+import { Heart, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function SavedOffersPage() {
   const navigate = useNavigate();
@@ -15,67 +15,122 @@ export default function SavedOffersPage() {
     <div style={{ paddingBottom: '90px' }}>
       <Header title="Saved Offers" showBack={true} showNotifications={false} />
 
-      <div style={{ padding: '16px 18px 8px' }}>
+      <div className="desktop-page-container">
+        {/* Breadcrumb Back Button */}
+        <button
+          onClick={() => navigate('/profile')}
+          className="spring-btn"
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: '#ffd700',
+            fontSize: '13px',
+            fontWeight: '800',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            cursor: 'pointer',
+            padding: '4px 0',
+            marginBottom: '14px'
+          }}
+        >
+          <ArrowLeft size={16} />
+          <span>Back to Profile</span>
+        </button>
+
+        {/* Hero Header Banner */}
         <div style={{
-          background: 'linear-gradient(135deg, #241419 0%, #131317 100%)',
-          borderRadius: '16px',
-          border: '1px solid rgba(255, 45, 85, 0.3)',
-          padding: '14px 16px',
+          background: 'linear-gradient(135deg, #241419 0%, #15151a 100%)',
+          borderRadius: '20px',
+          border: '1.5px solid rgba(255, 45, 85, 0.4)',
+          padding: '18px 22px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginBottom: '16px'
+          marginBottom: '22px',
+          boxShadow: '0 8px 25px rgba(255, 45, 85, 0.2)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             <div style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '10px',
+              width: '46px',
+              height: '46px',
+              borderRadius: '14px',
               backgroundColor: '#ff2d55',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#fff'
+              color: '#fff',
+              boxShadow: '0 0 16px rgba(255, 45, 85, 0.6)'
             }}>
-              <Heart size={20} fill="#fff" />
+              <Heart size={24} fill="#fff" />
             </div>
             <div>
-              <div style={{ fontSize: '15px', fontWeight: '800', color: '#fff' }}>
-                {savedList.length} Saved Deal{savedList.length === 1 ? '' : 's'}
+              <div style={{ fontSize: '18px', fontWeight: '950', color: '#fff' }}>
+                {savedList.length} Bookmarked Deal{savedList.length === 1 ? '' : 's'}
               </div>
-              <div style={{ fontSize: '11px', color: '#ff758f' }}>
-                Your bookmarked deals for later
+              <div style={{ fontSize: '12px', color: '#ff758f', marginTop: '2px' }}>
+                Your saved discount passes ready for in-store checkout
               </div>
             </div>
           </div>
+
+          <button
+            onClick={() => navigate('/offers')}
+            className="spring-btn"
+            style={{
+              background: 'rgba(255, 45, 85, 0.15)',
+              border: '1px solid #ff2d55',
+              color: '#fff',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: '800',
+              cursor: 'pointer'
+            }}
+          >
+            Find More Deals
+          </button>
         </div>
 
-        {savedList.length > 0 ? (
-          savedList.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} />
-          ))
-        ) : (
-          <div style={{ textAlign: 'center', padding: '50px 20px', color: '#888' }}>
-            <Heart size={48} color="#444" style={{ margin: '0 auto 12px' }} />
-            <p style={{ fontSize: '15px', color: '#fff', fontWeight: '700' }}>No saved offers yet</p>
-            <p style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>Tap the heart on any offer to save it here</p>
-            <button
-              onClick={() => navigate('/offers')}
-              style={{
-                marginTop: '16px',
-                background: '#ffd700',
-                color: '#000',
-                fontWeight: '800',
-                border: 'none',
-                borderRadius: '20px',
-                padding: '10px 20px',
-                cursor: 'pointer'
-              }}
-            >
-              Browse Offers
-            </button>
-          </div>
-        )}
+        {/* Multi-Column Grid */}
+        <div className="desktop-feed-grid">
+          {savedList.length > 0 ? (
+            savedList.map((offer, idx) => (
+              <OfferCard key={offer.id} offer={offer} index={idx} />
+            ))
+          ) : (
+            <div style={{
+              textAlign: 'center',
+              padding: '60px 20px',
+              color: '#888',
+              gridColumn: '1 / -1',
+              background: '#141418',
+              borderRadius: '20px',
+              border: '1px solid rgba(255,255,255,0.08)'
+            }}>
+              <Heart size={42} color="#ff2d55" style={{ margin: '0 auto 12px' }} />
+              <h3 style={{ fontSize: '16px', fontWeight: '900', color: '#fff' }}>
+                No Saved Offers Yet
+              </h3>
+              <p style={{ fontSize: '12px', color: '#888', marginTop: '4px' }}>
+                Tap the heart icon on any deal card to save it here for later.
+              </p>
+              <button
+                onClick={() => navigate('/offers')}
+                className="gold-glow-button"
+                style={{
+                  marginTop: '16px',
+                  padding: '9px 22px',
+                  borderRadius: '20px',
+                  fontSize: '12px',
+                  cursor: 'pointer'
+                }}
+              >
+                Explore Hot Deals
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
