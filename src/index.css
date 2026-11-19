@@ -300,6 +300,21 @@ html, body {
 
 /* Mobile: Pure Native full bleed (< 1024px) */
 @media (max-width: 1023px) {
+  /* On actual mobile devices, the browser already has its own OS status bar (10:10, battery, wifi).
+     Hide the simulated status bar so it doesn't push the real header down */
+  .app-status-bar {
+    display: none !important;
+  }
+
+  .app-header {
+    top: 0 !important;
+  }
+
+  /* Hide the large desktop-oriented hero banner on mobile so users see search and deals immediately */
+  .desktop-only-hero {
+    display: none !important;
+  }
+
   .desktop-navbar,
   .desktop-footer {
     display: none !important;

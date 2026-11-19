@@ -73,8 +73,8 @@ export default function OffersPage() {
       {/* Mobile Top Header */}
       <Header title={`Hot Deals (${selectedCity})`} showNotifications={true} />
 
-      {/* Hero Showcase Banner for Desktop & Mobile */}
-      <div style={{
+      {/* Hero Showcase Banner (Desktop only) */}
+      <div className="desktop-only-hero" style={{
         background: 'linear-gradient(135deg, #241c08 0%, #121217 60%, #0d0d10 100%)',
         borderBottom: '1.5px solid rgba(255, 215, 0, 0.28)',
         padding: '24px 20px 20px',
@@ -213,12 +213,12 @@ export default function OffersPage() {
           </div>
 
           {/* Search Field & Sort Dropdown */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: '1 1 300px', maxWidth: '480px' }}>
-            <div style={{ position: 'relative', flex: 1 }}>
-              <Search size={15} color="#888" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', maxWidth: '100%' }}>
+            <div style={{ position: 'relative', flex: '1 1 60%' }}>
+              <Search size={14} color="#888" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
               <input
                 type="text"
-                placeholder={`Search ${selectedCategory !== 'All' ? selectedCategory : 'all'} deals...`}
+                placeholder="Search deals..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 style={{
@@ -226,9 +226,9 @@ export default function OffersPage() {
                   backgroundColor: '#16161b',
                   border: '1.5px solid rgba(255, 215, 0, 0.25)',
                   borderRadius: '22px',
-                  padding: '9px 36px 9px 38px',
+                  padding: '8px 30px 8px 32px',
                   color: '#ffffff',
-                  fontSize: '13px',
+                  fontSize: '12.5px',
                   outline: 'none'
                 }}
               />
@@ -237,7 +237,7 @@ export default function OffersPage() {
                   onClick={() => setQuery('')}
                   style={{
                     position: 'absolute',
-                    right: '12px',
+                    right: '10px',
                     top: '50%',
                     transform: 'translateY(-50%)',
                     background: 'none',
@@ -246,13 +246,13 @@ export default function OffersPage() {
                     cursor: 'pointer'
                   }}
                 >
-                  <X size={14} />
+                  <X size={13} />
                 </button>
               )}
             </div>
 
             {/* Sort Picker */}
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', flex: '0 0 auto' }}>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
@@ -260,17 +260,18 @@ export default function OffersPage() {
                   backgroundColor: '#16161b',
                   border: '1.5px solid rgba(255, 215, 0, 0.28)',
                   borderRadius: '22px',
-                  padding: '9px 14px',
+                  padding: '8px 10px',
                   color: '#ffd700',
-                  fontSize: '12px',
+                  fontSize: '11.5px',
                   fontWeight: '800',
                   outline: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  maxWidth: '135px'
                 }}
               >
-                <option value="popular">⚡ Popular First</option>
-                <option value="discount">🔥 Highest Discount</option>
-                <option value="distance">📍 Nearest Distance</option>
+                <option value="popular">⚡ Popular</option>
+                <option value="discount">🔥 Top %</option>
+                <option value="distance">📍 Nearest</option>
               </select>
             </div>
           </div>
